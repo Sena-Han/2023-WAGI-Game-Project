@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -17,6 +18,7 @@ public class Player : MonoBehaviour
     public GameObject bulletObjectA; // 총알 오브젝트A
     public GameObject bulletObjectB; // 총알 오브젝트B
 
+    public GameManager manager;
     Animator anim;
     
     void Awake()
@@ -123,6 +125,11 @@ public class Player : MonoBehaviour
                     isTouchRight = true;
                     break;
             }
+        }
+        else if(collision.gameObject.tag == "Enemy"|| collision.gameObject.tag == "EnemyBullet") {
+            manager.RespawnPlayer();
+            gameObject.SetActive(false);
+
         }
     }
     void OnTriggerExit2D(Collider2D collision)
