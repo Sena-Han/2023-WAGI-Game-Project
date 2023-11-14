@@ -14,6 +14,10 @@ public class Player : MonoBehaviour
     public float maxShotDelay; // ÃÑ¾Ë ÀçÀåÀü ÄðÅ¸ÀÓ
     public float curShotDelay; // ÃÑ¾Ë ÀçÀåÀü ÄðÅ¸ÀÓ
 
+    public int life; // ¸ñ¼û
+    public int score; // Á¡¼ö
+    public GameManager manager;
+    public bool isHit;
     public GameObject bulletObjectA; // ÃÑ¾Ë ¿ÀºêÁ§Æ®A
     public GameObject bulletObjectB; // ÃÑ¾Ë ¿ÀºêÁ§Æ®B
 
@@ -123,6 +127,26 @@ public class Player : MonoBehaviour
                     isTouchRight = true;
                     break;
             }
+        }
+        else if(collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "EnemyBullet")
+        {
+            if (isHit) return;
+
+            isHit = true;
+            life--;
+            manager.UpdateLifeIcon(life);
+
+            if(life == 0)
+            {
+                manager.GameOver();
+            }
+            else
+            {
+                manager.RespawnPlayer();
+            }
+            
+            gameObject.SetActive(false);
+            Destroy(collision.gameObject);
         }
     }
     void OnTriggerExit2D(Collider2D collision)
