@@ -1,28 +1,25 @@
 fileFormatVersion: 2
-guid: 5547e92425a5b584ba72bba3566474f0
+guid: 54eba9c24be4c474180c23dcccfd6630
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 874343242196921964
-    second: Player Bullet 1
+      213: 5986030973748356752
+    second: Explosion 0
   - first:
-      213: -7976837497307082302
-    second: Player Bullet 1
+      213: -5600206312213581617
+    second: Explosion 1
   - first:
-      213: -7803065417098437583
-    second: Follower Bullet
+      213: 3815954189206336483
+    second: Explosion 2
   - first:
-      213: 7431529995326980795
-    second: Enemy Bullet 0
+      213: -3690502768834906923
+    second: Explosion 3
   - first:
-      213: -7779215486825634471
-    second: Enemy Bullet 1
+      213: -49130668184793455
+    second: Explosion 4
   - first:
-      213: 830317617348258784
-    second: Enemy Bullet 2
-  - first:
-      213: 6112890488319390909
-    second: Enemy Bullet 3
+      213: -2330519403281856691
+    second: Explosion 5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -132,13 +129,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player Bullet 0
+      name: Explosion 0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 5
-        width: 4
-        height: 7
+        x: 0
+        y: 25
+        width: 24
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -146,20 +143,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8dccaf8c3e226a0428f7e896381ac92a
-      internalID: 874343242196921964
+      spriteID: 4711029429b146a428aa9f2d77d102df
+      internalID: 5986030973748356752
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player Bullet 1
+      name: Explosion 1
       rect:
         serializedVersion: 2
-        x: 12
-        y: 1
-        width: 8
-        height: 11
+        x: 25
+        y: 25
+        width: 24
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -167,20 +164,62 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9cc2ab879b914f4458dd7f4dc3ba118a
-      internalID: -7976837497307082302
+      spriteID: 6c42cab6d4160bd40848397de7486e7d
+      internalID: -5600206312213581617
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Follower Bullet
+      name: Explosion 2
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 25
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b571e3b51a3a7cf41af963ae13592a04
+      internalID: 3815954189206336483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Explosion 3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30672c0c751bb43469354f66ba7d85c8
+      internalID: -3690502768834906923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Explosion 4
       rect:
         serializedVersion: 2
         x: 25
         y: 0
-        width: 4
-        height: 12
+        width: 24
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -188,62 +227,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 08736399e57566a46aada98c4619dd7f
-      internalID: -7803065417098437583
+      spriteID: 2ee1b751809f88f4485d7a551a53bed4
+      internalID: -49130668184793455
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy Bullet 0
+      name: Explosion 5
       rect:
         serializedVersion: 2
-        x: 35
-        y: 3
-        width: 6
-        height: 9
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5ac75827b2750c44ba8121a16bc838fb
-      internalID: 7431529995326980795
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Enemy Bullet 1
-      rect:
-        serializedVersion: 2
-        x: 46
-        y: 4
-        width: 6
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 238b27ef20d455d48841f73f87df4f92
-      internalID: -7779215486825634471
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Enemy Bullet 2
-      rect:
-        serializedVersion: 2
-        x: 58
+        x: 50
         y: 0
-        width: 4
-        height: 12
+        width: 24
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -251,29 +248,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ce9f36515b768434887b9d71b078c811
-      internalID: 830317617348258784
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Enemy Bullet 3
-      rect:
-        serializedVersion: 2
-        x: 66
-        y: 2
-        width: 10
-        height: 10
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b2f8ee3afc0d1a048b9b62f2060d118a
-      internalID: 6112890488319390909
+      spriteID: cbd1a4fc32ff5514d8c42601fefa879e
+      internalID: -2330519403281856691
       vertices: []
       indices: 
       edges: []

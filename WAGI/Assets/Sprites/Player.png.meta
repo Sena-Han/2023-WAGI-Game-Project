@@ -4,40 +4,40 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: -2311659948842064771
-    second: Player_0
+    second: Center 0
   - first:
       213: 7364682651488144517
-    second: Player_1
+    second: Center 1
   - first:
       213: -6287787046888575383
-    second: Player_2
+    second: Center 2
   - first:
       213: -1182821291677670348
-    second: Player_3
+    second: Center 3
   - first:
       213: -4709456396536258026
-    second: Player_4
+    second: Right 0
   - first:
       213: -4529042392078601758
-    second: Player_5
+    second: Right 1
   - first:
       213: -7446026091647042388
-    second: Player_6
+    second: Right 2
   - first:
       213: 5938012242645255967
-    second: Player_7
+    second: Right 3
   - first:
       213: -4245738604243887485
-    second: Player_8
+    second: Left 0
   - first:
       213: 2473453845335418800
-    second: Player_9
+    second: Left 1
   - first:
       213: -3287367053296241113
-    second: Player_10
+    second: Left 2
   - first:
       213: -5319882733741912588
-    second: Player_11
+    second: Left 3
   - first:
       213: 7365574002475698461
     second: Player_12
@@ -63,7 +63,7 @@ TextureImporter:
       213: -661973496601677656
     second: Player_19
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -80,12 +80,9 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
-  vTOnly: 0
-  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -95,11 +92,11 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: 1
-    mipBias: 0
+    aniso: -1
+    mipBias: -100
     wrapU: 1
     wrapV: 1
-    wrapW: 0
+    wrapW: -1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -117,15 +114,10 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
-  flipbookRows: 1
-  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
-  ignorePngGamma: 0
   applyGammaDecoding: 0
-  swizzle: 50462976
-  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -137,7 +129,6 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -150,7 +141,6 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -163,7 +153,6 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -176,27 +165,13 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Server
-    maxTextureSize: 512
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player_0
+      name: Center 0
       rect:
         serializedVersion: 2
         x: 0
@@ -217,7 +192,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_1
+      name: Center 1
       rect:
         serializedVersion: 2
         x: 25
@@ -238,7 +213,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_2
+      name: Center 2
       rect:
         serializedVersion: 2
         x: 50
@@ -259,7 +234,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_3
+      name: Center 3
       rect:
         serializedVersion: 2
         x: 75
@@ -280,7 +255,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_4
+      name: Right 0
       rect:
         serializedVersion: 2
         x: 0
@@ -301,7 +276,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_5
+      name: Right 1
       rect:
         serializedVersion: 2
         x: 25
@@ -322,7 +297,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_6
+      name: Right 2
       rect:
         serializedVersion: 2
         x: 50
@@ -343,7 +318,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_7
+      name: Right 3
       rect:
         serializedVersion: 2
         x: 75
@@ -364,7 +339,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_8
+      name: Left 0
       rect:
         serializedVersion: 2
         x: 0
@@ -385,7 +360,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_9
+      name: Left 1
       rect:
         serializedVersion: 2
         x: 25
@@ -406,7 +381,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_10
+      name: Left 2
       rect:
         serializedVersion: 2
         x: 50
@@ -427,7 +402,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_11
+      name: Left 3
       rect:
         serializedVersion: 2
         x: 75
@@ -457,21 +432,9 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      Player_0: -2311659948842064771
-      Player_1: 7364682651488144517
-      Player_10: -3287367053296241113
-      Player_11: -5319882733741912588
-      Player_2: -6287787046888575383
-      Player_3: -1182821291677670348
-      Player_4: -4709456396536258026
-      Player_5: -4529042392078601758
-      Player_6: -7446026091647042388
-      Player_7: 5938012242645255967
-      Player_8: -4245738604243887485
-      Player_9: 2473453845335418800
-  mipmapLimitGroupName: 
+  spritePackingTag: 
   pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
