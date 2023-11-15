@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8941833645242842297}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.092870295, y: 1.6039778, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -150,14 +150,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyScore: 200
-  enemyName: 
+  enemyName: M
   speed: 10
   health: 15
   sprites:
   - {fileID: -1147401495359466748, guid: d0c1116ece127274b94c9974faa13f01, type: 3}
   - {fileID: -7844560889915226194, guid: d0c1116ece127274b94c9974faa13f01, type: 3}
-  maxShotDelay: 0
+  maxShotDelay: 3
   curShotDelay: 0
-  bulletObjectA: {fileID: 0}
-  bulletObjectB: {fileID: 0}
+  bulletObjA: {fileID: 3272235480318015793, guid: 47939a7d7bb0b524c96dafb687b2f405, type: 3}
+  bulletObjB: {fileID: 3272235480318015793, guid: c2b572156376dca45a33df960f36c2a6, type: 3}
   player: {fileID: 0}
+  itemCoin: {fileID: 8523163721772826779, guid: 7634a2a0db906d64095ae3b0809cb2ce, type: 3}
+  itemPower: {fileID: 4329243226162695456, guid: 283d452b957489642bbcf7dccc093268, type: 3}
+  itemBoom: {fileID: 69582818219783493, guid: 860fa58dd44ac794aafd5ea2fca62cdf, type: 3}

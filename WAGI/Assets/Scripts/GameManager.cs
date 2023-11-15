@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public Text scoreText;
     public Image[] lifeImage;
+    public Image[] boomImage;
     public GameObject gameOverSet;
 
     void Update()
@@ -28,7 +29,6 @@ public class GameManager : MonoBehaviour
             curSpawnDelay = 0;
         }
 
-
         // #.UI Score Update
         Player playerLogic = player.GetComponent<Player>();
         scoreText.text = string.Format("{0:n0}", playerLogic.score);
@@ -38,12 +38,15 @@ public class GameManager : MonoBehaviour
     {
         int ranEnemy = Random.Range(0, 3);
         int ranPoint = Random.Range(0, 9);
-        GameObject enemy=Instantiate(enemyObjs[ranEnemy], spawnPoints[ranPoint].position, spawnPoints[ranPoint].rotation);
+        GameObject enemy = Instantiate(enemyObjs[ranEnemy], 
+            spawnPoints[ranPoint].position, 
+            spawnPoints[ranPoint].rotation);
+
         Rigidbody2D rigid = enemy.GetComponent<Rigidbody2D>();
         Enemy enemyLogic = enemy.GetComponent<Enemy>();
-        enemyLogic.player=player;
+        enemyLogic.player = player;
 
-        if (ranPoint==5 || ranPoint == 6)
+        if (ranPoint == 5 || ranPoint == 6)
         {
             enemy.transform.Rotate(Vector3.back * 90);
             rigid.velocity = new Vector2(enemyLogic.speed * (-1), -1);
@@ -70,21 +73,28 @@ public class GameManager : MonoBehaviour
         // #.UI Life Init Disable
         for (int index = 0;index < life; index++)
         {
-            lifeImage[index].color = new Color(1, 1, 1, 0);
+            lifeImage[index].color = new Color(1, 1, 1, 1);
         }
     }
+
+    public void UpdateBoomIcon(int boom)
+    {
+        for (int index = 0; index < 3; index++)
+            boomImage[index].color = new Color(1, 1, 1, 0);
+
+        for (int index = 0; index < boom; index++)
+            boomImage[index].color = new Color(1, 1, 1, 1);
+    }
+
     public void RespawnPlayer()
     {
-        Invoke("RespawnPlaterExe", 2f);
+        Invoke("RespawnPlayerExe", 2f);
     }
 
     void RespawnPlayerExe()
     {
         player.transform.position = Vector3.down * 3.5f;
         player.SetActive(true);
-
-        Player platerLogic = player.GetComponent<Player>();
-        platerLogic.isHit = false;
     }
 
     public void GameOver()

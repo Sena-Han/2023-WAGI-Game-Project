@@ -11,27 +11,62 @@ public class Enemy : MonoBehaviour
     public int health;
     public Sprite[] sprites;
 
-    Rigidbody2D rigid;
+    SpriteRenderer spriteRenderer;
 
     public float maxShotDelay;
     public float curShotDelay;
 
-    public GameObject bulletObjectA;
-    public GameObject bulletObjectB;
+    public GameObject bulletObjA;
+    public GameObject bulletObjB;
     public GameObject player;
 
+    public GameObject itemCoin;
+    public GameObject itemPower;
+    public GameObject itemBoom;
 
-    SpriteRenderer spriteRenderer;
-
-    void OnHit(int dmg)
+    void Awake()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    void Update()
+    {
+        Fire();
+        Reload();
+    }
+
+    public void OnHit(int dmg)
+    {
+        if (health <= 0)
+            return;
+
         health -= dmg;
         spriteRenderer.sprite = sprites[1];
         Invoke("ReturnSprite", 0.1f);
+
         if (health <= 0)
         {
             Player playerLogic = player.GetComponent<Player>();
             playerLogic.score += enemyScore;
+
+            int ran = Random.Range(0, 10);
+            if (ran < 3)
+            {
+                Debug.Log("Nope");
+            }
+            else if (ran < 6)
+            {
+                Instantiate(itemCoin, transform.position, itemCoin.transform.rotation);
+            }
+            else if (ran < 8)
+            {
+                Instantiate(itemPower, transform.position, itemPower.transform.rotation);
+            }
+            else if (ran < 10)
+            {
+                Instantiate(itemBoom, transform.position, itemBoom.transform.rotation);
+            }
+
             Destroy(gameObject);
         }
     }
@@ -50,22 +85,10 @@ public class Enemy : MonoBehaviour
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
             OnHit(bullet.dmg);
 
-
+            Destroy(collision.gameObject);
         }
     }
 
-    void Awake()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        rigid = GetComponent<Rigidbody2D>();
-        rigid.velocity = Vector2.down * speed;
-    }
-
-    void Update()
-    {
-        Fire();
-        Reload();
-    }
     void Fire()
     {
         if (curShotDelay < maxShotDelay)
@@ -74,15 +97,15 @@ public class Enemy : MonoBehaviour
         }
         if (enemyName == "S")
         {
-            GameObject bullet = Instantiate(bulletObjectA, transform.position, transform.rotation);
+            GameObject bullet = Instantiate(bulletObjA, transform.position, transform.rotation);
             Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
             Vector3 dirVec = player.transform.position - transform.position;
-            rigid.AddForce(dirVec * 10, ForceMode2D.Impulse);
+            rigid.AddForce(dirVec.normalized * 3, ForceMode2D.Impulse);
         }
         else if (enemyName == "L")
         {
-            GameObject bulletR = Instantiate(bulletObjectA, transform.position + Vector3.right * 0.3f, transform.rotation);
-            GameObject bulletL = Instantiate(bulletObjectA, transform.position + Vector3.left * 0.3f, transform.rotation);
+            GameObject bulletR = Instantiate(bulletObjB, transform.position + Vector3.right * 0.3f, transform.rotation);
+            GameObject bulletL = Instantiate(bulletObjB, transform.position + Vector3.left * 0.3f, transform.rotation);
 
             Rigidbody2D rigidR = bulletR.GetComponent<Rigidbody2D>();
             Rigidbody2D rigidL = bulletL.GetComponent<Rigidbody2D>();
@@ -90,8 +113,8 @@ public class Enemy : MonoBehaviour
             Vector3 dirVecR = player.transform.position - (transform.position + Vector3.right * 0.3f);
             Vector3 dirVecL = player.transform.position - (transform.position + Vector3.left * 0.3f);
 
-            rigidR.AddForce(dirVecR * 10, ForceMode2D.Impulse);
-            rigidL.AddForce(dirVecL * 10, ForceMode2D.Impulse);
+            rigidR.AddForce(dirVecR.normalized * 10, ForceMode2D.Impulse);
+            rigidL.AddForce(dirVecL.normalized * 10, ForceMode2D.Impulse);
         }
         curShotDelay = 0;
     }

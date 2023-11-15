@@ -9,17 +9,26 @@ public class Player : MonoBehaviour
     public bool isTouchLeft;
     public bool isTouchRight;
 
+    public int life; // ¸ñ¼û
+    public int score; // Á¡¼ö
+
     public float speed;
-    public float power;
+    public int power;
+    public int maxPower;
+    public int boom;
+    public int maxBoom;
+
     public float maxShotDelay; // ÃÑ¾Ë ÀçÀåÀü ÄðÅ¸ÀÓ
     public float curShotDelay; // ÃÑ¾Ë ÀçÀåÀü ÄðÅ¸ÀÓ
 
-    public int life; // ¸ñ¼û
-    public int score; // Á¡¼ö
     public GameManager manager;
+
     public bool isHit;
-    public GameObject bulletObjectA; // ÃÑ¾Ë ¿ÀºêÁ§Æ®A
-    public GameObject bulletObjectB; // ÃÑ¾Ë ¿ÀºêÁ§Æ®B
+    public bool isBoomTime;
+
+    public GameObject bulletObjA; // ÃÑ¾Ë ¿ÀºêÁ§Æ®A
+    public GameObject bulletObjB; // ÃÑ¾Ë ¿ÀºêÁ§Æ®B
+    public GameObject boomEffect;
 
     Animator anim;
     
@@ -32,6 +41,7 @@ public class Player : MonoBehaviour
     {
         Move();
         Fire();
+        Boom();
         Reload();
     }
 
@@ -41,9 +51,11 @@ public class Player : MonoBehaviour
         float h = Input.GetAxisRaw("Horizontal");
         if ((isTouchRight && h == 1) || (isTouchLeft && h == -1))
             h = 0;
+
         float v = Input.GetAxisRaw("Vertical");
         if ((isTouchTop && v == 1) || (isTouchBottom && v == -1))
             v = 0;
+
         Vector3 curPos = transform.position;
         Vector3 nextPos = new Vector3(h, v, 0) * speed * Time.deltaTime;
 
@@ -73,14 +85,14 @@ public class Player : MonoBehaviour
         {
             case 1:
                 // Power One
-                GameObject bullet = Instantiate(bulletObjectA, transform.position, transform.rotation);
+                GameObject bullet = Instantiate(bulletObjA, transform.position, transform.rotation);
                 Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
                 rigid.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
                 break;
             case 2:
                 // Power two
-                GameObject bulletR = Instantiate(bulletObjectA, transform.position + Vector3.right * 0.1f, transform.rotation);
-                GameObject bulletL = Instantiate(bulletObjectA, transform.position + Vector3.left * 0.1f, transform.rotation);
+                GameObject bulletR = Instantiate(bulletObjA, transform.position + Vector3.right * 0.1f, transform.rotation);
+                GameObject bulletL = Instantiate(bulletObjA, transform.position + Vector3.left * 0.1f, transform.rotation);
 
                 Rigidbody2D rigidR = bulletR.GetComponent<Rigidbody2D>();
                 Rigidbody2D rigidL = bulletL.GetComponent<Rigidbody2D>();
@@ -89,9 +101,9 @@ public class Player : MonoBehaviour
                 break;
             case 3:
                 // power three
-                GameObject bulletRR = Instantiate(bulletObjectA, transform.position + Vector3.right * 0.2f, transform.rotation);
-                GameObject bulletCC = Instantiate(bulletObjectB, transform.position, transform.rotation);
-                GameObject bulletLL = Instantiate(bulletObjectA, transform.position + Vector3.left * 0.2f, transform.rotation);
+                GameObject bulletRR = Instantiate(bulletObjA, transform.position + Vector3.right * 0.2f, transform.rotation);
+                GameObject bulletCC = Instantiate(bulletObjB, transform.position, transform.rotation);
+                GameObject bulletLL = Instantiate(bulletObjA, transform.position + Vector3.left * 0.2f, transform.rotation);
                 
                 Rigidbody2D rigidRR = bulletRR.GetComponent<Rigidbody2D>();
                 Rigidbody2D rigidCC = bulletCC.GetComponent<Rigidbody2D>();
@@ -110,10 +122,43 @@ public class Player : MonoBehaviour
     {
         curShotDelay += Time.deltaTime;
     }
+
+    void Boom()
+    {
+        if (!Input.GetButton("Fire2"))
+            return;
+
+        if (isBoomTime)
+            return;
+
+        if (boom == 0)
+            return;
+
+        boom--;
+        isBoomTime = true;
+        manager.UpdateBoomIcon(boom);
+
+        boomEffect.SetActive(true);
+        Invoke("OffBoomEffect", 4f);
+
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        for (int index = 0; index < enemies.Length; index++)
+        {
+            Enemy enemyLogic = enemies[index].GetComponent<Enemy>();
+            enemyLogic.OnHit(1000);
+        }
+
+        GameObject[] bullets = GameObject.FindGameObjectsWithTag("EnemyBullet");
+        for (int index = 0; index < bullets.Length; index++)
+            Destroy(enemies[index]);
+    }
+
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Border") {
-            switch(collision.gameObject.name) {
+        if (collision.gameObject.tag == "Border")
+        {
+            switch (collision.gameObject.name)
+            {
                 case "Top":
                     isTouchTop = true;
                     break;
@@ -128,15 +173,17 @@ public class Player : MonoBehaviour
                     break;
             }
         }
-        else if(collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "EnemyBullet")
+        else if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "EnemyBullet")
         {
-            if (isHit) return;
+            if (isHit) 
+                return;
 
             isHit = true;
+
             life--;
             manager.UpdateLifeIcon(life);
 
-            if(life == 0)
+            if (life == 0)
             {
                 manager.GameOver();
             }
@@ -144,11 +191,44 @@ public class Player : MonoBehaviour
             {
                 manager.RespawnPlayer();
             }
-            
+
             gameObject.SetActive(false);
             Destroy(collision.gameObject);
         }
+        else if (collision.gameObject.tag == "Item")
+        {
+            Item item = collision.gameObject.GetComponent<Item>();
+            switch (item.type)
+            {
+                case "Coin":
+                    score += 1000;
+                    break;
+                case "Power":
+                    if (power == maxPower)
+                        score += 500;
+                    else
+                        power++;
+                    break;
+                case "Boom":
+                    if (boom == maxBoom)
+                        score += 500;
+                    else
+                    {
+                        boom++;
+                        manager.UpdateBoomIcon(boom);
+                    }
+                    break;
+            }
+            Destroy(collision.gameObject);
+        }
     }
+
+    void OffBoomEffect()
+    {
+        boomEffect.SetActive(false);
+        isBoomTime = false;
+    }
+
     void OnTriggerExit2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Border") {
