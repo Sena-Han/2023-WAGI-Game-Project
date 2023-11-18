@@ -1439,7 +1439,7 @@ MonoBehaviour:
   - {fileID: 421114154}
   - {fileID: 79284390}
   - {fileID: 639145275}
-  maxSpawnDelay: 2
+  nextSpawnDelay: 0
   curSpawnDelay: 0
   player: {fileID: 1470431598}
   scoreText: {fileID: 1554886211}
@@ -1453,6 +1453,8 @@ MonoBehaviour:
   - {fileID: 144496173}
   gameOverSet: {fileID: 1202210985}
   objectManager: {fileID: 1069771103}
+  spawnIndex: 0
+  spawnEnd: 0
 --- !u!4 &930552812
 Transform:
   m_ObjectHideFlags: 0
@@ -2238,7 +2240,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1264476897}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 930552811}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: GameRetry
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1264476897
 MonoBehaviour:
   m_ObjectHideFlags: 0
