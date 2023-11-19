@@ -26,9 +26,12 @@ public class Player : MonoBehaviour
     public bool isHit;
     public bool isBoomTime;
 
+
     public GameObject bulletObjA; // 총알 오브젝트A
     public GameObject bulletObjB; // 총알 오브젝트B
     public GameObject boomEffect;
+    
+    public GameObject[] followers;
 
     Animator anim;
     
@@ -104,8 +107,8 @@ public class Player : MonoBehaviour
                 rigidR.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
                 rigidL.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
                 break;
-            case 3:
-                // power three
+            default:
+                // power three,four,five,six - maxPower 6으로 변경함
                 GameObject bulletRR = objectManager.MakeObj("BulletPlayerA");
                 bulletRR.transform.position = transform.position + Vector3.right * 0.2f;
 
@@ -253,8 +256,10 @@ public class Player : MonoBehaviour
                 case "Power":
                     if (power == maxPower)
                         score += 500;
-                    else
+                    else{
                         power++;
+                        AddFollower();
+                    }
                     break;
                 case "Boom":
                     if (boom == maxBoom)
@@ -269,6 +274,17 @@ public class Player : MonoBehaviour
             collision.gameObject.SetActive(false);
         }
     }
+
+    void AddFollower() //  보조무기 장착
+    {
+        if(power ==2)
+            followers[0].SetActive(true);
+        if(power ==4)
+            followers[1].SetActive(true);
+        if(power ==6)
+            followers[2].SetActive(true);
+    }
+
 
     void OffBoomEffect()
     {
