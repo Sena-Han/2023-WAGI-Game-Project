@@ -27,6 +27,7 @@ public class Enemy : MonoBehaviour
     public GameObject bulletObjB;
     public GameObject player;
     public ObjectManager objectManager;
+    public GameManager gameManager;
 
     public GameObject itemCoin;
     public GameObject itemPower;
@@ -263,6 +264,7 @@ public class Enemy : MonoBehaviour
 
             gameObject.SetActive(false);
             transform.rotation = Quaternion.identity;
+            gameManager.CallExplosion(transform.position, enemyName);
         }
     }
 
