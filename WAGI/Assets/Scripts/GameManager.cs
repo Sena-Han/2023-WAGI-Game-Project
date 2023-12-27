@@ -7,6 +7,7 @@ using System.IO;
 
 public class GameManager : MonoBehaviour
 {
+    public int stage;
     public string[] enemyObjs;
     public Transform[] spawnPoints;
 
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
     public int spawnIndex;
     public bool spawnEnd;
 
+
     void Awake()
     {
         spawnList = new List<Spawn>();
@@ -32,15 +34,40 @@ public class GameManager : MonoBehaviour
         ReadSpawnFile();
     }
 
+    public void StageStart()
+    {
+        //#.Stage UI Load
+
+        //#.Enemy Spawn File Read
+        ReadSpawnFile();
+
+        //#.Fade In
+    }
+
+    public void StageEnd()
+    {
+        //#.Clear UI Load
+
+        //#.Stage Increament
+        stage++;
+
+        //#.Fade Out
+
+        //#.Player Reposition 
+    }
+
     void ReadSpawnFile()
     {
+        //#1.변수 초기화
         spawnList.Clear();
         spawnIndex = 0;
         spawnEnd = false;
 
-        TextAsset textFile = Resources.Load("Stage 0") as TextAsset;
+        //#2. 리스폰 파일 읽기
+        TextAsset textFile = Resources.Load("Stage " + stage) as TextAsset;
         StringReader stringReader = new StringReader(textFile.text);
 
+        //#3. 한 줄씩 데이터 저장
         while (stringReader != null)
         {
             string line = stringReader.ReadLine();
@@ -103,6 +130,7 @@ public class GameManager : MonoBehaviour
         Rigidbody2D rigid = enemy.GetComponent<Rigidbody2D>();
         Enemy enemyLogic = enemy.GetComponent<Enemy>();
         enemyLogic.player = player;
+        enemyLogic.gameManager = this;
         enemyLogic.objectManager = objectManager;
 
         if (enemyPoint == 5 || enemyPoint == 6)
@@ -154,32 +182,9 @@ public class GameManager : MonoBehaviour
             boomImage[index].color = new Color(1, 1, 1, 1);
     }
 
-    /*
     public void RespawnPlayer()
     {
-        Invoke("RespawnPlayerExe", 2f);
-    }
 
-    void RespawnPlayerExe()
-    {
-        player.transform.position = Vector3.down * 3.5f;
-        player.SetActive(true);
-    }
-
-    public void GameOver()
-    {
-        gameOverSet.SetActive(true);
-    }
-
-    public void GameRetry()
-    {
-        SceneManager.LoadScene(0);
-    }
-    */
-    
-    // 아래 코드가 목숨 3개 모두 없어지는 원래 코드입니다
-    public void RespawnPlayer()
-    {
         Invoke("RespawnPlayerExe", 2f);
         player.transform.position = Vector3.down * 4f;
         player.SetActive(true);
@@ -191,6 +196,15 @@ public class GameManager : MonoBehaviour
         player.SetActive(true);
         Player playerLogic = player.GetComponent<Player>();
         playerLogic.isHit = false;
+    }
+
+    public void CallExplosion(Vector3 pos, string type)
+    {
+        GameObject explosion = objectManager.MakeObj("Explosion");
+        Explosion explosionLogic = explosion.GetComponent<Explosion>();
+
+        explosion.transform.position = pos;
+        explosionLogic.StartExplosion(type);
     }
 
     public void GameOver()

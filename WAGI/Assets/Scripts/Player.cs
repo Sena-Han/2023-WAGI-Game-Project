@@ -33,13 +33,38 @@ public class Player : MonoBehaviour
     
     public GameObject[] followers;
 
+    public bool[] joyControl;
+    public bool isControl;
+    public bool isButtonA;
+    public bool isButtonB;
+    public bool isRespawnTime;
+
     Animator anim;
-    
+    SpriteRenderer spriteRenderer;
     void Awake()
     {
         anim = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
+    void OnEnable() // 죽었을 때 무적상태
+    {
+        Unbeatable();
+        Invoke("Unbeatable", 3);
+    }
+
+    void Unbeatable()
+    {
+        isRespawnTime = !isRespawnTime;
+        if (isRespawnTime)
+        {
+            spriteRenderer.color = new Color(1, 1, 1, 0.5f);
+        }
+        else
+        {
+            spriteRenderer.color = new Color(1, 1, 1, 1);
+        }
+    }
     void Update()
     {
         Move();
@@ -48,15 +73,44 @@ public class Player : MonoBehaviour
         Reload();
     }
 
-    /* 승희 : 이동 */
-    void Move()
+    public void JoyPanel(int type)
     {
-        float h = Input.GetAxisRaw("Horizontal");
-        if ((isTouchRight && h == 1) || (isTouchLeft && h == -1))
-            h = 0;
+        for(int index = 0; index < 9; index++)
+        {
+            joyControl[index] = (index == type);
+        }
+    }
 
+    public void JoyDown()
+    {
+        isControl = true;
+    }
+    public void JoyUp()
+    {
+        isControl = false;
+    }
+    void Move() //이동
+    {
+        //#.Keyboard Control Value
+        float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
-        if ((isTouchTop && v == 1) || (isTouchBottom && v == -1))
+
+        //#.Joy Control Value
+        if (joyControl[0]) { h = -1; v = 1; }
+        if (joyControl[1]) { h = 0; v = 1; }
+        if (joyControl[2]) { h = 1; v = 1; }
+        if (joyControl[3]) { h = -1; v = 0; }
+        if (joyControl[4]) { h = 0; v = 0; }
+        if (joyControl[5]) { h = 1; v = 0; }
+        if (joyControl[6]) { h = -1; v = -1; }
+        if (joyControl[7]) { h = 0; v = -1; }
+        if (joyControl[8]) { h = 1; v = -1; }
+
+
+
+        if ((isTouchRight && h == 1) || (isTouchLeft && h == -1) || !isControl)
+            h = 0;
+        if ((isTouchTop && v == 1) || (isTouchBottom && v == -1) || !isControl)
             v = 0;
 
         Vector3 curPos = transform.position;
@@ -70,16 +124,34 @@ public class Player : MonoBehaviour
             anim.SetInteger("Input", (int)h);
         }
     }
-
-    /* 소현 : 총알 발사 */
-    void Fire() 
+    public void ButtonADown()
     {
-        if (!Input.GetButton("Fire1")) // 클릭 시 발사 제어
+        isButtonA = true;
+    }
+
+    public void ButtonAUp()
+    {
+        isButtonA = false;
+    }
+
+    public void ButtonBDown()
+    {
+        isButtonB = true;
+    }
+
+
+    void Fire()
+    {
+        /*if (!Input.GetButton("Fire1")) // 클릭 시 발사 제어
         {
             return;
-        }
+        }*/
 
-        if(curShotDelay < maxShotDelay) // 발사 재장전 쿨타임
+        if (!isButtonA)
+            return;
+
+        //#.발사 재장전 쿨타임
+        if (curShotDelay < maxShotDelay)
         {
             return;
         }
@@ -127,21 +199,27 @@ public class Player : MonoBehaviour
                 rigidLL.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
                 break;
         }
-       
-        curShotDelay = 0; // 딜레이 초기화
+        //#.딜레이 초기화
+        curShotDelay = 0; 
     }
 
-    void Reload() // 총알 재장전
+    //#.총알 재장전
+    void Reload()
     {
         curShotDelay += Time.deltaTime;
     }
 
     void Boom()
     {
-        if (!Input.GetButton("Fire2"))
+        /*if (!Input.GetButton("Fire2"))
         {
             return;
-        }
+        }*/
+
+
+        if (!isButtonB)
+            return;
+
         if (isBoomTime)
         {
             return;
@@ -225,13 +303,19 @@ public class Player : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "EnemyBullet")
         {
-            if (isHit) 
+            //#.무적상태인 경우
+            if (isRespawnTime)
+                return;
+
+            //#.맞았을 경우
+            if (isHit)
                 return;
 
             isHit = true;
 
             life--;
             gameManager.UpdateLifeIcon(life);
+            gameManager.CallExplosion(transform.position, "P");
 
             if (life == 0)
             {
@@ -275,7 +359,8 @@ public class Player : MonoBehaviour
         }
     }
 
-    void AddFollower() //  보조무기 장착
+    //#.보조무기 장착
+    void AddFollower()
     {
         if(power ==2)
             followers[0].SetActive(true);
