@@ -265,6 +265,10 @@ public class Enemy : MonoBehaviour
             gameObject.SetActive(false);
             transform.rotation = Quaternion.identity;
             gameManager.CallExplosion(transform.position, enemyName);
+
+            //#.Boss Kill
+            if (enemyName == "B")
+                gameManager.StageEnd();
         }
     }
 
