@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2192450021786810173, guid: d0c1116ece127274b94c9974faa13f01, type: 3}
+  m_Sprite: {fileID: 1034127928726684044, guid: e6e099368aac64140bd80857f10bd022, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -170,6 +170,7 @@ MonoBehaviour:
   bulletObjB: {fileID: 0}
   player: {fileID: 0}
   objectManager: {fileID: 0}
+  gameManager: {fileID: 0}
   itemCoin: {fileID: 0}
   itemPower: {fileID: 0}
   itemBoom: {fileID: 0}
