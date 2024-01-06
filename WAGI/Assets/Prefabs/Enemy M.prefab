@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1147401495359466748, guid: d0c1116ece127274b94c9974faa13f01, type: 3}
+  m_Sprite: {fileID: -7019249693993116969, guid: e6e099368aac64140bd80857f10bd022, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -102,7 +102,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.08, y: 0.9}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -154,13 +154,18 @@ MonoBehaviour:
   speed: 10
   health: 15
   sprites:
-  - {fileID: -1147401495359466748, guid: d0c1116ece127274b94c9974faa13f01, type: 3}
-  - {fileID: -7844560889915226194, guid: d0c1116ece127274b94c9974faa13f01, type: 3}
+  - {fileID: -7019249693993116969, guid: e6e099368aac64140bd80857f10bd022, type: 3}
+  - {fileID: -2461785823357687313, guid: e6e099368aac64140bd80857f10bd022, type: 3}
+  patternIndex: 0
+  curPatternCount: 0
+  maxPatternCount: 
   maxShotDelay: 3
   curShotDelay: 0
   bulletObjA: {fileID: 3272235480318015793, guid: 47939a7d7bb0b524c96dafb687b2f405, type: 3}
   bulletObjB: {fileID: 3272235480318015793, guid: c2b572156376dca45a33df960f36c2a6, type: 3}
   player: {fileID: 0}
+  objectManager: {fileID: 0}
+  gameManager: {fileID: 0}
   itemCoin: {fileID: 8523163721772826779, guid: 7634a2a0db906d64095ae3b0809cb2ce, type: 3}
   itemPower: {fileID: 4329243226162695456, guid: 283d452b957489642bbcf7dccc093268, type: 3}
   itemBoom: {fileID: 69582818219783493, guid: 860fa58dd44ac794aafd5ea2fca62cdf, type: 3}
