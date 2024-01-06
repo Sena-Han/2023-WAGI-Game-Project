@@ -1593,7 +1593,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6fe98846e31b1348a256241af989fa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 4
   startIndex: 2
   endIndex: 0
   sprites:
@@ -2841,7 +2841,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 3556181715638617739, guid: cab5071d769ea51449c07913112544a0, type: 3}
+  m_Sprite: {fileID: 4464502637856387318, guid: bc7d14b3ab717884fa3d672536c171ee, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3004,7 +3004,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 5707218116961789024, guid: cab5071d769ea51449c07913112544a0, type: 3}
+  m_Sprite: {fileID: -111974154554346046, guid: bc7d14b3ab717884fa3d672536c171ee, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6099,7 +6099,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -8816031292267695619, guid: cab5071d769ea51449c07913112544a0, type: 3}
+  m_Sprite: {fileID: 8939726018677129971, guid: bc7d14b3ab717884fa3d672536c171ee, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
