@@ -30,12 +30,10 @@ public class GameManager : MonoBehaviour
     public int spawnIndex;
     public bool spawnEnd;
 
-
     void Awake()
     {
         spawnList = new List<Spawn>();
         enemyObjs = new string[] { "EnemyS", "EnemyM", "EnemyL", "EnemyB" };
-
         StageStart();
     }
 
@@ -57,6 +55,8 @@ public class GameManager : MonoBehaviour
     {
         //#.Clear UI Load
         clearAnim.SetTrigger("On");
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.Gameclear);
+
 
         //#.Fade Out
         fadeAnim.SetTrigger("Out");
@@ -68,8 +68,11 @@ public class GameManager : MonoBehaviour
         stage++;
         if (stage > 2)
             Invoke("GameOver", 6);
+            
         else
             Invoke("StageStart", 5);
+            
+           
     }
 
     void ReadSpawnFile()
@@ -226,6 +229,11 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         gameOverSet.SetActive(true);
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.Gameover);
+      //  AudioManager.instance.PlayBgm(false);
+      
+      //GetComponent<AudioSource>().Stop();
+        
     }
 
     public void GameRetry()
