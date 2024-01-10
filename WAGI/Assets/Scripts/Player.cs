@@ -127,6 +127,7 @@ public class Player : MonoBehaviour
     public void ButtonADown()
     {
         isButtonA = true;
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.AttackA);
     }
 
     public void ButtonAUp()
@@ -230,6 +231,7 @@ public class Player : MonoBehaviour
         }
         boom--;
         isBoomTime = true;
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.AttackB);
         gameManager.UpdateBoomIcon(boom);
         boomEffect.SetActive(true);
         Invoke("OffBoomEffect", 4f);
@@ -314,6 +316,7 @@ public class Player : MonoBehaviour
             isHit = true;
 
             life--;
+            AudioManager.instance.PlaySfx(AudioManager.Sfx.Dead);
             gameManager.UpdateLifeIcon(life);
             gameManager.CallExplosion(transform.position, "P");
 
@@ -335,9 +338,11 @@ public class Player : MonoBehaviour
             switch (item.type)
             {
                 case "Coin":
+                    AudioManager.instance.PlaySfx(AudioManager.Sfx.EarnItem);
                     score += 1000;
                     break;
                 case "Power":
+                    AudioManager.instance.PlaySfx(AudioManager.Sfx.EarnItem);
                     if (power == maxPower)
                         score += 500;
                     else{
@@ -346,6 +351,7 @@ public class Player : MonoBehaviour
                     }
                     break;
                 case "Boom":
+                     AudioManager.instance.PlaySfx(AudioManager.Sfx.EarnItem);
                     if (boom == maxBoom)
                         score += 500;
                     else

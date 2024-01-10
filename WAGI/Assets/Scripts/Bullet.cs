@@ -8,8 +8,9 @@ public class Bullet : MonoBehaviour
     public bool isRotate;
     void Update()
     {
-        if (isRotate)
+        if (isRotate){
             transform.Rotate(Vector3.forward * 10);
+            }
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
