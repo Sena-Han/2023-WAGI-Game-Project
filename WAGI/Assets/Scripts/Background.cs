@@ -20,6 +20,7 @@ public class Background : MonoBehaviour
    {
     Move();
     Scrolling();
+    //AudioManager.instance.PlayBgm(true);
    }
 
     void Move()
