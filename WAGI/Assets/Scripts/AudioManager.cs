@@ -29,13 +29,14 @@ public class AudioManager : MonoBehaviour
 
    void Init()
    {
-       GameObject bgmObject = new GameObject("BgmPlayer");
+       /*GameObject bgmObject = new GameObject("BgmPlayer");
        bgmObject.transform.parent = transform;
        bgmPlayer = bgmObject.AddComponent<AudioSource>();
        bgmPlayer.playOnAwake = true;
        bgmPlayer.loop = true;
        bgmPlayer.volume = bgmVolume;
-       bgmPlayer.clip = bgmClip;
+       bgmPlayer.clip = bgmClip;*/
+
        
        GameObject sfxObject = new GameObject("SfxPlayer");
        sfxObject.transform.parent = transform;
